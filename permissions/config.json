@@ -1,0 +1,70 @@
+{
+    "auth": {
+        "collection": "user",
+        "secret": "your-primary-secret-key",
+        "refreshsecret": "your-secondary-secret-key",
+        "username": "username",
+        "password": "password",
+        "access": 900000,
+        "refresh": 31536000000
+    },
+    "collections": {
+        "users": {
+            "schema": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "hash"
+                },
+                "permissions": {
+                    "type": "array",
+                    "default": [
+                        "user"
+                    ]
+                }
+            },
+            "permissions": {
+                "post": true
+            }
+        },
+        "todos": {
+            "schema": {
+                "title": {
+                    "type": "string"
+                },
+                "done": {
+                    "type": "number"
+                },
+                "user": {
+                    "type": "string",
+                    "default": "$.auth._id"
+                }
+            },
+            "permissions": {
+                "user": {
+                    "get": {
+                        "query": {
+                            "user": "$.auth._id"
+                        }
+                    },
+                    "post": {
+                        "omit": ["user"]
+                    },
+                    "patch": {
+                        "query": {
+                            "user": "$.auth._id"
+                        },
+                        "omit": ["user"]
+                    },
+                    "delete": {
+                        "query": {
+                            "user": "$.auth._id"
+                        }
+                    }
+                },
+                "admin": true
+            }
+        }
+    }
+}

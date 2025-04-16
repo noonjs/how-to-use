@@ -1,0 +1,17 @@
+{
+    "collections": {
+        "todos": {
+            "schema": {
+                "title": {
+                    "type": "string"
+                },
+                "done": {
+                    "type": "number"
+                }
+            },
+            "permissions": {
+                "*": true
+            }
+        }
+    }
+}

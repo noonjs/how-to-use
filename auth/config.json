@@ -1,0 +1,27 @@
+{
+    "cors": {
+        "origin": "your-front",
+        "credentials": true
+    },
+    "collections": {
+        "users": {
+            "schema": {
+                "username": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "hash"
+                },
+                "permissions": {
+                    "type": "array",
+                    "default": [
+                        "user"
+                    ]
+                }
+            },
+            "permissions": {
+                "*": true
+            }
+        }
+    }
+}
